@@ -8,5 +8,6 @@ int main() {
         i+=i;
     }
     cout << "End of the programm." << endl;
+    cout << "Luca was here" << endl;
     return 0;
 }
