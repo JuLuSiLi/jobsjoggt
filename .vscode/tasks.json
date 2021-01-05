@@ -9,8 +9,8 @@
 				"/Zi",
 				"/EHsc",
 				"/Fe:",
-				"${fileDirname}\\${fileBasenameNoExtension}.exe",
-				"${file}"
+				"${cwd}\\JobsJoggt.exe",
+				"${workspaceFolder}\\src\\*.cpp"
 			],
 			"options": {
 				"cwd": "${workspaceFolder}"
