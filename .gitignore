@@ -4,4 +4,6 @@
 *.suo
 *.user
 *.sqlite
+*.exe
+*.bin
 .vs/
