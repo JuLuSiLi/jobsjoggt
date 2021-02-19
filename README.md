@@ -1,6 +1,2 @@
 # Jobsjoggt
-<ul>
-<li>one</li>
-<li>two</li>
-<li>three</li>
-</ul>
+<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
