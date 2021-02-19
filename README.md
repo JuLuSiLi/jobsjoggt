@@ -1,2 +1,2 @@
 # Jobsjoggt
-<p><img src="JobsJoggt_Icon.png" alt="JobsJoggt" title="JobsJoggt" /></p>
+<p><img src="readme_res/JobsJoggt_Icon.png" alt="JobsJoggt" title="JobsJoggt" /></p>
