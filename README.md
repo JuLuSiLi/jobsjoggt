@@ -1,2 +1,2 @@
 # Jobsjoggt
-<p><img src="train.jpg" alt="foo bar" title="train &amp; tracks" /></p>
+<p><img src="JobsJoggt_Icon.png" alt="JobsJoggt" title="title" /></p>
