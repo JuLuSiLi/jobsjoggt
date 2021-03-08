@@ -4,6 +4,8 @@
 *.suo
 *.user
 *.sqlite
-*.exe
 *.bin
 .vs/
+Makefile
+*.make
+
