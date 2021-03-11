@@ -1,5 +1,5 @@
 **Summary**
-Explain is one or two sentences what you did.
+Explain in one or two sentences what you did.
 
 **Explanation**
 Elaborate on your additions, is documentation required? Did you fix any issues (link them using #ISSUE-NUMBER)?
