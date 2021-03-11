@@ -1,5 +1,5 @@
 **Summary**
-Explain is one or two sentences what you did.
+Explain in one or two sentences what you did.
 
 **Explanation**
 What did you add? Link possible issues you fixed.
