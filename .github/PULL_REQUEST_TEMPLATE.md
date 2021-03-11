@@ -2,8 +2,8 @@
 Explain is one or two sentences what you did.
 
 **Explanation**
-Elaborate on your additions, is documentation required? Did you fix any issues (link them using #ISSUE-NUMBER)?
-Does the program run faster, any other optimizations? Creation of graphic assets?
+What did you add? Link possible issues you fixed.
+Elaborate if documentation is needed, the maintainers will then take care of it.
 
 If applicable, post screenshots.
 

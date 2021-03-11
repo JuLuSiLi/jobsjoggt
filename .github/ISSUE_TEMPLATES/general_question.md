@@ -7,5 +7,5 @@ assignees: ''
 ---
 
 **What is your question?**
-Elaborate on your question as precisely as possible, such as
-"How do I do...", "When are you going to add..."
+Elaborate on your question as precisely as possible.
+Please make sure that your question does not fit into either a bug report or a feature request.
