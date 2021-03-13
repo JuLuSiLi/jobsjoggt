@@ -4,7 +4,7 @@ on:
   pull_request:
 
 env:
-  token: ${{ secrets.API_TOKEN }}
+  token: ${{ secrets.GITHUB_TOKEN }}
   args: --all-features
 
 jobs:
