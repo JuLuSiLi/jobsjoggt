@@ -1,0 +1,16 @@
+name: Rust Clippy
+on: 
+  push:
+  pull_request:
+
+env:
+  token: ${{ secrets.API_TOKEN }}
+  args: --all-features
+
+jobs:
+  clippy_check:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v1
+      - run: rustup component add clippy
+      - uses: actions-rs/clippy-check@v1
