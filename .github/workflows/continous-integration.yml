@@ -5,7 +5,7 @@ on:
   pull_request:
 
 jobs:
-  build:
+  build1:
     name: Linux Rust Build
     runs-on: ubuntu-18.04
 
@@ -17,6 +17,8 @@ jobs:
       - name: Run tests
         run: cargo test --verbose
 
+
+  build2:
     name: Windows Rust Build
     runs-on: windows-2019
     
