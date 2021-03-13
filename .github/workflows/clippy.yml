@@ -1,7 +1,7 @@
-on: [push, pull_request]
-name: Clippy check
+on: pull_request
+name: Clippy Annotations
 jobs:
-  clippy_check:
+  clippy_annotations:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v1
