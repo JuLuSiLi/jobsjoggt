@@ -8,7 +8,6 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  if: "!contains(github.event.head_commit.message, '[build skip]') && !contains(github.event.head_commit.message, '[skip build]'"
   build:
     runs-on: ubuntu-18.04
 
