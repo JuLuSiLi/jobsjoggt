@@ -1,0 +1,30 @@
+name: Continous Integration
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    name: Linux Rust Build
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Build on Linux
+        run: cargo build --verbose
+      - name: Run Tests
+        run: cargo test --verbose
+
+  build:
+      name: Windows Rust Build
+      runs-on: windows-2019
+
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+        - name: Build on Windows
+          run: cargo build --verbose
+        - name: Run Tests
+          run: cargo test --verbose
