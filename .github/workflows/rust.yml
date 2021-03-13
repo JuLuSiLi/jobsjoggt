@@ -6,15 +6,14 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-
-jobs:
 if: "!contains(github.event.head_commit.message, '[build skip]') && !contains(github.event.head_commit.message, '[skip build]'"
-  build:
-    runs-on: ubuntu-18.04
+  jobs:
+    build:
+      runs-on: ubuntu-18.04
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Build
+      steps:
+      - uses: actions/checkout@v2
+      - name: Build
       run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
+      - name: Run tests
+        run: cargo test --verbose

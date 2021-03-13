@@ -1,13 +1,14 @@
 on: pull_request
 name: Clippy Annotations
-jobs:
+
 if: "!contains(github.event.head_commit.message, '[clippy skip]') && !contains(github.event.head_commit.message, '[skip clippy]'"
-  clippy_annotations:
-    runs-on: ubuntu-18.04
-    steps:
-      - uses: actions/checkout@v1
-      - run: rustup component add clippy
-      - uses: actions-rs/clippy-check@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          args: --all-features
+  jobs:
+    clippy_annotations:
+      runs-on: ubuntu-18.04
+      steps:
+        - uses: actions/checkout@v1
+        - run: rustup component add clippy
+        - uses: actions-rs/clippy-check@v1
+            with:
+              token: ${{ secrets.GITHUB_TOKEN }}
+              args: --all-features
