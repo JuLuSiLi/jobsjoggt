@@ -1,0 +1,18 @@
+name: Clippy Lint
+
+on: pull_request
+
+jobs:
+  run-clippy-lint:
+    name: Clippy Lint
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+      - name: add clippy
+        run: rustup compoment add clippy
+      - name: lint with clippy
+        uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --all-features
