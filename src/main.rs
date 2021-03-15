@@ -1,7 +1,7 @@
 mod matrix_4x4_math;
 use matrix_4x4_math::Matrix4x4;
 mod vector_math;
-use vector_math::Vector4;
+use vector_math::*;
 
 fn main() {
     let m1 = Matrix4x4 {
