@@ -1,5 +1,5 @@
 use std::ops;
-use crate::vector_math::Vector4;
+use crate::vector_math::*;
 
 #[derive(Debug)]
 pub struct Matrix4x4 {
@@ -14,6 +14,52 @@ impl Matrix4x4 {
         Matrix4x4 {
             r0: Vector4::new(1.0, 0.0, 0.0, 0.0),
             r1: Vector4::new(0.0, 1.0, 0.0, 0.0),
+            r2: Vector4::new(0.0, 0.0, 1.0, 0.0),
+            r3: Vector4::new(0.0, 0.0, 0.0, 1.0),
+        }
+    }
+
+    pub fn scale(s: &Vector3) -> Matrix4x4 {
+        Matrix4x4 {
+            r0: Vector4::new(s.x, 0.0, 0.0, 0.0),
+            r1: Vector4::new(0.0, s.y, 0.0, 0.0),
+            r2: Vector4::new(0.0, 0.0, s.z, 0.0),
+            r3: Vector4::new(0.0, 0.0, 0.0, 1.0),
+        }
+    }
+    
+    pub fn translation(t: &Vector3) -> Matrix4x4 {
+        Matrix4x4 {
+            r0: Vector4::new(1.0, 0.0, 0.0, t.x),
+            r1: Vector4::new(0.0, 1.0, 0.0, t.y),
+            r2: Vector4::new(0.0, 0.0, 1.0, t.z),
+            r3: Vector4::new(0.0, 0.0, 0.0, 1.0),
+        }
+    }
+
+    // Rotations in radians
+    pub fn x_rotation(r: f32) -> Matrix4x4 {
+        Matrix4x4 {
+            r0: Vector4::new(1.0, 0.0, 0.0, 0.0),
+            r1: Vector4::new(0.0, r.cos(), -r.sin(), 0.0),
+            r2: Vector4::new(0.0, r.sin(), r.cos(), 0.0),
+            r3: Vector4::new(0.0, 0.0, 0.0, 1.0),
+        }
+    }
+
+    pub fn y_rotation(r: f32) -> Matrix4x4 {
+        Matrix4x4 {
+            r0: Vector4::new(r.cos(), 0.0, r.sin(), 0.0),
+            r1: Vector4::new(0.0, 1.0, 0.0, 0.0),
+            r2: Vector4::new(-r.sin(), 0.0, r.cos(), 0.0),
+            r3: Vector4::new(0.0, 0.0, 0.0, 1.0),
+        }
+    }
+
+    pub fn z_rotation(r: f32) -> Matrix4x4 {
+        Matrix4x4 {
+            r0: Vector4::new(r.cos(), -r.sin(), 0.0, 0.0),
+            r1: Vector4::new(r.sin(), r.cos(), 0.0, 0.0),
             r2: Vector4::new(0.0, 0.0, 1.0, 0.0),
             r3: Vector4::new(0.0, 0.0, 0.0, 1.0),
         }
