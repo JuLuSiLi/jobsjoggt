@@ -25,6 +25,7 @@ impl Vector3 {
     }
 }
 
+// Vector + Vector
 impl<'a, 'b> ops::Add<&'b Vector3> for &'a Vector3 {
     type Output = Vector3;
 
@@ -37,6 +38,7 @@ impl<'a, 'b> ops::Add<&'b Vector3> for &'a Vector3 {
     }
 }
 
+// Vector - Vector
 impl<'a, 'b> ops::Sub<&'b Vector3> for &'a Vector3 {
     type Output = Vector3;
 
@@ -49,6 +51,7 @@ impl<'a, 'b> ops::Sub<&'b Vector3> for &'a Vector3 {
     }
 }
 
+// Vector * Vector (Dot product)
 impl<'a, 'b> ops::Mul<&'b Vector3> for &'a Vector3 {
     type Output = f32;
 
@@ -56,5 +59,18 @@ impl<'a, 'b> ops::Mul<&'b Vector3> for &'a Vector3 {
         self.x * other.x +
         self.y * other.y +
         self.z * other.z
+    }
+}
+
+// Vector * Scalar
+impl<'a, 'b> ops::Mul<f32> for &'a Vector3 {
+    type Output = Vector3;
+
+    fn mul(self, other: f32) -> Vector3 {
+        Vector3 {
+            x: self.x * other,
+            y: self.y * other,
+            z: self.z * other,
+        }
     }
 }

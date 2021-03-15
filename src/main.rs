@@ -17,7 +17,9 @@ fn main() {
         r3: Vector4::new(9.0, -2.0, 1.0, 2.0),
     };
     let m3 = &m1 * &m2;
+    let v = Vector4::new(2.0, 9.0, -4.0, 6.0);
     println!("m1: {:?}", m1);
     println!("m2: {:?}", m2);
     println!("m3: {:?}", m3);
+    println!("m3 * v: {:?}", &m1 * &v);
 }

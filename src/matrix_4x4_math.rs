@@ -82,6 +82,7 @@ impl Matrix4x4 {
     }
 }
 
+// Matrix + Matrix
 impl<'a, 'b> ops::Add<&'b Matrix4x4> for &'a Matrix4x4 {
     type Output = Matrix4x4;
 
@@ -95,6 +96,7 @@ impl<'a, 'b> ops::Add<&'b Matrix4x4> for &'a Matrix4x4 {
     }
 }
 
+// Matrix - Matrix
 impl<'a, 'b> ops::Sub<&'b Matrix4x4> for &'a Matrix4x4 {
     type Output = Matrix4x4;
 
@@ -108,6 +110,7 @@ impl<'a, 'b> ops::Sub<&'b Matrix4x4> for &'a Matrix4x4 {
     }
 }
 
+// Matrix * Matrix
 impl<'a, 'b> ops::Mul<&'b Matrix4x4> for &'a Matrix4x4 {
     type Output = Matrix4x4;
 
@@ -122,6 +125,34 @@ impl<'a, 'b> ops::Mul<&'b Matrix4x4> for &'a Matrix4x4 {
             r1: Vector4::new(&self.r1 * &other_c0, &self.r1 * &other_c1, &self.r1 * &other_c2, &self.r1 * &other_c3),
             r2: Vector4::new(&self.r2 * &other_c0, &self.r2 * &other_c1, &self.r2 * &other_c2, &self.r2 * &other_c3),
             r3: Vector4::new(&self.r3 * &other_c0, &self.r3 * &other_c1, &self.r3 * &other_c2, &self.r3 * &other_c3),
+        }
+    }
+}
+
+// Matrix * Scalar
+impl<'a, 'b> ops::Mul<f32> for &'a Matrix4x4 {
+    type Output = Matrix4x4;
+
+    fn mul(self, other: f32) -> Matrix4x4 {
+        Matrix4x4 {
+            r0: &self.r0 * other,
+            r1: &self.r0 * other,
+            r2: &self.r0 * other,
+            r3: &self.r0 * other,
+        }
+    }
+}
+
+// Matrix * Vector
+impl<'a, 'b> ops::Mul<&'b Vector4> for &'a Matrix4x4 {
+    type Output = Vector4;
+
+    fn mul(self, other: &'b Vector4) -> Vector4 {
+        Vector4 {
+            x: &self.r0 * other,
+            y: &self.r1 * other,
+            z: &self.r2 * other,
+            w: &self.r3 * other,
         }
     }
 }
