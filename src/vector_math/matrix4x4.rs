@@ -259,7 +259,20 @@ impl<'a, 'b> ops::Mul<f32> for Matrix4x4 {
     }
 }
 
-// Matrix * Vector
+// Matrix * Vector3
+impl<'a, 'b> ops::Mul<Vector3> for Matrix4x4 {
+    type Output = Vector3;
+
+    fn mul(self, other: Vector3) -> Vector3 {
+        Vector3 {
+            x: self.m[00] * other.x + self.m[01] * other.y + self.m[02] * other.z + self.m[03],
+            y: self.m[04] * other.x + self.m[05] * other.y + self.m[06] * other.z + self.m[07],
+            z: self.m[08] * other.x + self.m[09] * other.y + self.m[10] * other.z + self.m[11],
+        }
+    }
+}
+
+// Matrix * Vector4
 impl<'a, 'b> ops::Mul<Vector4> for Matrix4x4 {
     type Output = Vector4;
 
