@@ -1,6 +1,6 @@
 use std::ops;
 
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub struct Vector4 {
     pub x: f32,
     pub y: f32,
@@ -20,10 +20,10 @@ impl Vector4 {
 }
 
 // Vector + Vector
-impl<'a, 'b> ops::Add<&'b Vector4> for &'a Vector4 {
+impl<'a, 'b> ops::Add<Vector4> for Vector4 {
     type Output = Vector4;
 
-    fn add(self, other: &'b Vector4) -> Vector4 {
+    fn add(self, other: Vector4) -> Vector4 {
         Vector4 {
             x: self.x + other.x,
             y: self.y + other.y,
@@ -34,10 +34,10 @@ impl<'a, 'b> ops::Add<&'b Vector4> for &'a Vector4 {
 }
 
 // Vector - Vector
-impl<'a, 'b> ops::Sub<&'b Vector4> for &'a Vector4 {
+impl<'a, 'b> ops::Sub<Vector4> for Vector4 {
     type Output = Vector4;
 
-    fn sub(self, other: &'b Vector4) -> Vector4 {
+    fn sub(self, other: Vector4) -> Vector4 {
         Vector4 {
             x: self.x - other.x,
             y: self.y - other.y,
@@ -48,10 +48,10 @@ impl<'a, 'b> ops::Sub<&'b Vector4> for &'a Vector4 {
 }
 
 // Vector * Vector (Dot product)
-impl<'a, 'b> ops::Mul<&'b Vector4> for &'a Vector4 {
+impl<'a, 'b> ops::Mul<Vector4> for Vector4 {
     type Output = f32;
 
-    fn mul(self, other: &'b Vector4) -> f32 {
+    fn mul(self, other: Vector4) -> f32 {
         self.x * other.x +
         self.y * other.y +
         self.z * other.z +
@@ -60,10 +60,25 @@ impl<'a, 'b> ops::Mul<&'b Vector4> for &'a Vector4 {
 }
 
 // Vector * Scalar
-impl<'a, 'b> ops::Mul<f32> for &'a Vector4 {
+impl<'a, 'b> ops::Mul<f32> for Vector4 {
     type Output = Vector4;
 
     fn mul(self, other: f32) -> Vector4 {
+        Vector4 {
+            x: self.x * other,
+            y: self.y * other,
+            z: self.z * other,
+            w: self.w * other,
+        }
+    }
+}
+
+// Vector / Scalar
+impl<'a, 'b> ops::Div<f32> for Vector4 {
+    type Output = Vector4;
+
+    fn div(self, other: f32) -> Vector4 {
+        let other = 1.0 / other;
         Vector4 {
             x: self.x * other,
             y: self.y * other,

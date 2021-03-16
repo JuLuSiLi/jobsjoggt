@@ -24,7 +24,7 @@ impl Matrix4x4 {
         }
     }
 
-    pub fn scale(s: &Vector3) -> Matrix4x4 {
+    pub fn scale(s: Vector3) -> Matrix4x4 {
         Matrix4x4 {
             m: [
                 s.x, 0.0, 0.0, 0.0,
@@ -35,7 +35,7 @@ impl Matrix4x4 {
         }
     }
     
-    pub fn translation(t: &Vector3) -> Matrix4x4 {
+    pub fn translation(t: Vector3) -> Matrix4x4 {
         Matrix4x4 {
             m: [
                 1.0, 0.0, 0.0, t.x,
@@ -76,6 +76,54 @@ impl Matrix4x4 {
                 r.sin(), r.cos(), 0.0, 0.0,
                 0.0, 0.0, 1.0, 0.0,
                 0.0, 0.0, 0.0, 1.0
+            ]
+        }
+    }
+
+    pub fn orthographic_projection_sym(width: f32, height: f32, near: f32, far: f32) -> Matrix4x4 {
+        let right = width * 0.5;
+        let top = height * 0.5;
+        Matrix4x4 {
+            m: [
+                1.0 / right, 0.0, 0.0, 0.0,
+                0.0, 1.0 / top, 0.0, 0.0,
+                0.0, 0.0, -2.0 / (far - near), -(far + near) / (far - near),
+                0.0, 0.0, 0.0, 1.0
+            ]
+        }
+    }
+
+    pub fn orthographic_projection(left: f32, right: f32, bottom: f32, top: f32, near: f32, far: f32) -> Matrix4x4 {
+        Matrix4x4 {
+            m: [
+                2.0 / (right - left), 0.0, 0.0, -(right + left) / (right - left),
+                0.0, 2.0 / (top - bottom), 0.0, -(top + bottom) / (top - bottom),
+                0.0, 0.0, -2.0 / (far - near), -(far + near) / (far - near),
+                0.0, 0.0, 0.0, 1.0
+            ]
+        }
+    }
+
+    pub fn perspective_projection_sym(width: f32, height: f32, near: f32, far: f32) -> Matrix4x4 {
+        let right = width * 0.5;
+        let top = height * 0.5;
+        Matrix4x4 {
+            m: [
+                near / right, 0.0, 0.0, 0.0,
+                0.0, near / top, 0.0, 0.0,
+                0.0, 0.0, -(far + near) / (far - near), -2.0 * far * near / (far - near),
+                0.0, 0.0, -1.0, 0.0
+            ]
+        }
+    }
+
+    pub fn perspective_projection(left: f32, right: f32, bottom: f32, top: f32, near: f32, far: f32) -> Matrix4x4 {
+        Matrix4x4 {
+            m: [
+                2.0 * near / (right - left), 0.0, (right + left) / (right - left), 0.0,
+                0.0, 2.0 * near / (top - bottom), (top + bottom) / (top - bottom), 0.0,
+                0.0, 0.0, -(far + near) / (far - near), -2.0 * far * near / (far - near),
+                0.0, 0.0, -1.0, 0.0
             ]
         }
     }
@@ -212,10 +260,10 @@ impl<'a, 'b> ops::Mul<f32> for &'a Matrix4x4 {
 }
 
 // Matrix * Vector
-impl<'a, 'b> ops::Mul<&'b Vector4> for &'a Matrix4x4 {
+impl<'a, 'b> ops::Mul<Vector4> for &'a Matrix4x4 {
     type Output = Vector4;
 
-    fn mul(self, other: &'b Vector4) -> Vector4 {
+    fn mul(self, other: Vector4) -> Vector4 {
         Vector4 {
             x: self.m[00] * other.x + self.m[01] * other.y + self.m[02] * other.z + self.m[03] * other.w,
             y: self.m[04] * other.x + self.m[05] * other.y + self.m[06] * other.z + self.m[07] * other.w,
