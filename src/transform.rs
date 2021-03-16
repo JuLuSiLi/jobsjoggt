@@ -31,9 +31,17 @@ impl Transform {
         self.has_changed = true;
     }
 
+    pub fn get_position(&self) -> Vector3 {
+        self.position
+    }
+
     pub fn set_rotation(&mut self, rotation: Vector3) {
         self.rotation = rotation;
         self.has_changed = true;
+    }
+
+    pub fn get_rotation(&self) -> Vector3 {
+        self.rotation
     }
 
     pub fn set_scale(&mut self, scale: Vector3) {
@@ -41,18 +49,11 @@ impl Transform {
         self.has_changed = true;
     }
 
-    pub fn get_position(&self) -> Vector3 {
-        self.position
-    }
-
-    pub fn get_rotation(&self) -> Vector3 {
-        self.rotation
-    }
-
     pub fn get_scale(&self) -> Vector3 {
         self.scale
     }
 
+    // World-space to local-space
     pub fn transform_point(&mut self, point: Vector3) -> Vector3 {
         if self.has_changed {
             self.compute_matrices();
