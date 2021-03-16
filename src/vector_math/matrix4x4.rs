@@ -6,7 +6,7 @@ use crate::vector_math::*;
 // | 4  5  6  7  |
 // | 8  9  10 11 |
 // | 12 13 14 15 |
-#[derive(Debug)]
+#[derive(Debug, Copy, Clone)]
 pub struct Matrix4x4 {
     pub m: [f32; 16]
 }
@@ -181,10 +181,10 @@ impl Matrix4x4 {
 }
 
 // Matrix + Matrix
-impl<'a, 'b> ops::Add<&'b Matrix4x4> for &'a Matrix4x4 {
+impl<'a, 'b> ops::Add<Matrix4x4> for Matrix4x4 {
     type Output = Matrix4x4;
 
-    fn add(self, other: &'b Matrix4x4) -> Matrix4x4 {
+    fn add(self, other: Matrix4x4) -> Matrix4x4 {
         Matrix4x4 {
             m: [
                 self.m[00] + other.m[00], self.m[01] + other.m[01], self.m[02] + other.m[02], self.m[03] + other.m[03],
@@ -197,10 +197,10 @@ impl<'a, 'b> ops::Add<&'b Matrix4x4> for &'a Matrix4x4 {
 }
 
 // Matrix - Matrix
-impl<'a, 'b> ops::Sub<&'b Matrix4x4> for &'a Matrix4x4 {
+impl<'a, 'b> ops::Sub<Matrix4x4> for Matrix4x4 {
     type Output = Matrix4x4;
 
-    fn sub(self, other: &'b Matrix4x4) -> Matrix4x4 {
+    fn sub(self, other: Matrix4x4) -> Matrix4x4 {
         Matrix4x4 {
             m: [
                 self.m[00] - other.m[00], self.m[01] - other.m[01], self.m[02] - other.m[02], self.m[03] - other.m[03],
@@ -213,10 +213,10 @@ impl<'a, 'b> ops::Sub<&'b Matrix4x4> for &'a Matrix4x4 {
 }
 
 // Matrix * Matrix
-impl<'a, 'b> ops::Mul<&'b Matrix4x4> for &'a Matrix4x4 {
+impl<'a, 'b> ops::Mul<Matrix4x4> for Matrix4x4 {
     type Output = Matrix4x4;
 
-    fn mul(self, other: &'b Matrix4x4) -> Matrix4x4 {
+    fn mul(self, other: Matrix4x4) -> Matrix4x4 {
         Matrix4x4 {
             m: [
                 self.m[00] * other.m[00] + self.m[01] * other.m[04] + self.m[02] * other.m[08] + self.m[03] * other.m[12],
@@ -244,7 +244,7 @@ impl<'a, 'b> ops::Mul<&'b Matrix4x4> for &'a Matrix4x4 {
 }
 
 // Matrix * Scalar
-impl<'a, 'b> ops::Mul<f32> for &'a Matrix4x4 {
+impl<'a, 'b> ops::Mul<f32> for Matrix4x4 {
     type Output = Matrix4x4;
 
     fn mul(self, other: f32) -> Matrix4x4 {
@@ -260,7 +260,7 @@ impl<'a, 'b> ops::Mul<f32> for &'a Matrix4x4 {
 }
 
 // Matrix * Vector
-impl<'a, 'b> ops::Mul<Vector4> for &'a Matrix4x4 {
+impl<'a, 'b> ops::Mul<Vector4> for Matrix4x4 {
     type Output = Vector4;
 
     fn mul(self, other: Vector4) -> Vector4 {
