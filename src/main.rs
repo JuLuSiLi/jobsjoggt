@@ -1,14 +1,10 @@
+pub mod vector_math;
+use vector_math::*;
+
 fn main() {
-    let a = 5;
-    let b = 12;
-    println!("Hello, jobsjoggt! Your result is: {}", add(a, b));
+    let m1 = Matrix4x4::perspective_projection_sym(10.0, 6.0, 2.0, 4.0);
+    let v1 = Vector4::new(-10.0, -6.0, -4.0, 1.0);
+    let v2 = m1 * v1;
+    println!("m1: {:?}", m1);
+    println!("m1 * v1 (h): {:?}", v2 / v2.w);
 }
-
-fn add(a: i32, b: i32) -> i32 {
-    a + b
-}
-
-#[test]
-    fn test_add() {
-        assert_eq!(add(2, 3), 5);
-    }
