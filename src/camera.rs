@@ -87,5 +87,7 @@ impl Camera {
         
         self.projection = Matrix4x4::perspective_projection_sym(width, height, self.near, self.far);
         self.inv_projection = self.projection.inverse();
+
+        self.has_changed = false;
     }
 }

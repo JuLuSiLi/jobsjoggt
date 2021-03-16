@@ -88,5 +88,7 @@ impl Transform {
             (Matrix4x4::x_rotation(self.rotation.x.to_radians()) *
             (Matrix4x4::y_rotation(self.rotation.y.to_radians()) *
             Matrix4x4::translation(self.position))));
+
+        self.has_changed = false;
     }
 }
