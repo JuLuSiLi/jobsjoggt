@@ -1,34 +1,15 @@
 pub mod vector_math;
 use vector_math::*;
-pub mod transform;
-use transform::Transform;
-pub mod camera;
-use camera::Camera;
+pub mod components;
+use components::*;
 
-/*use winit::{
+use winit::{
     event::{Event, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     window::WindowBuilder,
-};*/
+};
 
 fn main() {
-    /*let mut t = Transform::new();
-    t.set_position(Vector3::new(1.0, -5.0, 2.0));
-    t.set_rotation(Vector3::new(35.0, -187.0, 12.0));
-    t.set_scale(Vector3::new(2.0, 0.3, 2.5));
-
-    println!("Local to World: {:?}", t.get_local_to_world_matrix());
-    println!("World to Local: {:?}", t.get_world_to_local_matrix());
-    println!("Identity: {:?}", t.get_local_to_world_matrix() * t.get_world_to_local_matrix());*/
-
-    let mut c = Camera::new(30.0, 16.0 / 9.0, 0.01, 1000.0);
-
-    println!("Local to World: {:?}", c.get_projection_matrix());
-    println!("World to Local: {:?}", c.get_inv_projection_matrix());
-    println!("Identity: {:?}", c.get_projection_matrix() * c.get_inv_projection_matrix());
-}
-
-/*fn main() {
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new().build(&event_loop).unwrap();    
 
@@ -71,4 +52,4 @@ fn main() {
             _ => ()
          }
      });
- }*/
+ }
