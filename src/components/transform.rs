@@ -1,4 +1,5 @@
 use crate::vector_math::*;
+use crate::components::*;
 
 #[derive(Debug)]
 pub struct Transform {
@@ -10,6 +11,10 @@ pub struct Transform {
 
     local_to_world: Matrix4x4,
     world_to_local: Matrix4x4,
+}
+
+impl Component for Transform {
+
 }
 
 impl Transform {

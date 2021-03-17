@@ -1,4 +1,5 @@
 use crate::vector_math::*;
+use crate::components::*;
 
 #[derive(Debug)]
 pub struct Camera {
@@ -11,6 +12,10 @@ pub struct Camera {
 
     projection: Matrix4x4,
     inv_projection: Matrix4x4,
+}
+
+impl Component for Camera {
+    
 }
 
 impl Camera {
