@@ -52,5 +52,6 @@ fn main() {
                 // the program to gracefully handle redraws requested by the OS.
             },
             _ => ()
-        }
-    });
+         }
+     });
+ }
