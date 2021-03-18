@@ -20,6 +20,7 @@ impl Component for Camera {
 
 impl Camera {
     pub fn new(fov: f32, aspect: f32, near: f32, far: f32) -> Camera {
+        
         Camera {
             fov: fov,
             aspect: aspect,
