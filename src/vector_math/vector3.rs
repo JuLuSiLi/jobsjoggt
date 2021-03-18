@@ -23,6 +23,14 @@ impl Vector3 {
             z: a.x * b.y - a.y * b.x,
         }
     }
+
+    pub fn length(&self) -> f32 {
+        (self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
+    }
+
+    pub fn normalized(self) -> Vector3 {
+        self / self.length()
+    }
 }
 
 // Vector + Vector

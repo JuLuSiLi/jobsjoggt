@@ -17,6 +17,14 @@ impl Vector4 {
             w: w,
         }
     }
+
+    pub fn length(&self) -> f32 {
+        (self.x * self.x + self.y * self.y + self.z * self.z + self.w * self.w).sqrt()
+    }
+
+    pub fn normalized(self) -> Vector4 {
+        self / self.length()
+    }
 }
 
 // Vector + Vector
