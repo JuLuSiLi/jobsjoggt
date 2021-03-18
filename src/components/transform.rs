@@ -13,10 +13,6 @@ pub struct Transform {
     world_to_local: Matrix4x4,
 }
 
-impl Component for Transform {
-    
-}
-
 impl Transform {
     pub fn new() -> Transform {
         Transform {

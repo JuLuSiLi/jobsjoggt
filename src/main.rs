@@ -1,11 +1,7 @@
-/*pub mod vector_math;
+pub mod vector_math;
 use vector_math::*;
 pub mod components;
 use components::*;
-pub mod game_object;
-use game_object::*;
-pub mod scene;
-use scene::*;*/
 
 use winit::{
     event::{Event, WindowEvent},
