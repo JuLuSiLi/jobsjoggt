@@ -1,4 +1,5 @@
 use crate::vector_math::*;
+use crate::components::*;
 
 #[derive(Debug)]
 pub struct Camera {
@@ -15,6 +16,7 @@ pub struct Camera {
 
 impl Camera {
     pub fn new(fov: f32, aspect: f32, near: f32, far: f32) -> Camera {
+        
         Camera {
             fov: fov,
             aspect: aspect,
@@ -64,21 +66,40 @@ impl Camera {
         self.far
     }
 
+    pub fn get_projection_matrix(&mut self) -> Matrix4x4 {
+        self.matrix_check();
+        
+        self.projection
+    }
+
+    pub fn get_inv_projection_matrix(&mut self) -> Matrix4x4 {
+        self.matrix_check();
+        
+        self.inv_projection
+    }
+
     // Local(camera)-space to ndc-space
     pub fn transform_point(&mut self, point: Vector3) -> Vector3 {
-        if self.has_changed {
-            self.compute_matrices();
-        }
+        self.matrix_check();
         
-        self.projection * point
+        let mut t_point = self.projection * Vector4::new(point.x, point.y, point.z, 1.0);
+        t_point /= t_point.w;
+        Vector3::new(t_point.x, t_point.y, t_point.z)
     }
 
     pub fn inv_transform_point(&mut self, point: Vector3) -> Vector3 {
+        self.matrix_check();
+        
+        let mut t_point = self.inv_projection * Vector4::new(point.x, point.y, point.z, 1.0);
+        t_point /= t_point.w;
+        Vector3::new(t_point.x, t_point.y, t_point.z)
+    }
+
+    fn matrix_check(&mut self) {
         if self.has_changed {
             self.compute_matrices();
+            self.has_changed = false;
         }
-        
-        self.inv_projection * point
     }
 
     fn compute_matrices(&mut self) {

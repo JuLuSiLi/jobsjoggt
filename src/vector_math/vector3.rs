@@ -23,6 +23,14 @@ impl Vector3 {
             z: a.x * b.y - a.y * b.x,
         }
     }
+
+    pub fn length(&self) -> f32 {
+        (self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
+    }
+
+    pub fn normalized(self) -> Vector3 {
+        self / self.length()
+    }
 }
 
 // Vector + Vector
@@ -38,6 +46,15 @@ impl<'a, 'b> ops::Add<Vector3> for Vector3 {
     }
 }
 
+// Vector +=
+impl<'a, 'b> ops::AddAssign<Vector3> for Vector3 {
+    fn add_assign(&mut self, other: Vector3) {
+        self.x += other.x;
+        self.y += other.y;
+        self.z += other.z;
+    }
+}
+
 // Vector - Vector
 impl<'a, 'b> ops::Sub<Vector3> for Vector3 {
     type Output = Vector3;
@@ -48,6 +65,15 @@ impl<'a, 'b> ops::Sub<Vector3> for Vector3 {
             y: self.y - other.y,
             z: self.z - other.z,
         }
+    }
+}
+
+// Vector -=
+impl<'a, 'b> ops::SubAssign<Vector3> for Vector3 {
+    fn sub_assign(&mut self, other: Vector3) {
+        self.x -= other.x;
+        self.y -= other.y;
+        self.z -= other.z;
     }
 }
 
@@ -75,6 +101,28 @@ impl<'a, 'b> ops::Mul<f32> for Vector3 {
     }
 }
 
+// Scalar * Vector
+impl<'a, 'b> ops::Mul<Vector3> for f32 {
+    type Output = Vector3;
+
+    fn mul(self, other: Vector3) -> Vector3 {
+        Vector3 {
+            x: self * other.x,
+            y: self * other.y,
+            z: self * other.z,
+        }
+    }
+}
+
+// Vector *=
+impl<'a, 'b> ops::MulAssign<f32> for Vector3 {
+    fn mul_assign(&mut self, other: f32) {
+        self.x *= other;
+        self.y *= other;
+        self.z *= other;
+    }
+}
+
 // Vector / Scalar
 impl<'a, 'b> ops::Div<f32> for Vector3 {
     type Output = Vector3;
@@ -85,6 +133,41 @@ impl<'a, 'b> ops::Div<f32> for Vector3 {
             x: self.x * other,
             y: self.y * other,
             z: self.z * other,
+        }
+    }
+}
+
+// Scalar / Vector
+impl<'a, 'b> ops::Div<Vector3> for f32 {
+    type Output = Vector3;
+
+    fn div(self, other: Vector3) -> Vector3 {
+        Vector3 {
+            x: self / other.x,
+            y: self / other.y,
+            z: self / other.z,
+        }
+    }
+}
+
+// Vector /=
+impl<'a, 'b> ops::DivAssign<f32> for Vector3 {
+    fn div_assign(&mut self, other: f32) {
+        self.x /= other;
+        self.y /= other;
+        self.z /= other;
+    }
+}
+
+// -Vector
+impl<'a> ops::Neg<> for Vector3 {
+    type Output = Vector3;
+
+    fn neg(self) -> Vector3 {
+        Vector3 {
+            x: -self.x,
+            y: -self.y,
+            z: -self.z,
         }
     }
 }

@@ -1,4 +1,5 @@
 use crate::vector_math::*;
+use crate::components::*;
 
 #[derive(Debug)]
 pub struct Transform {
@@ -53,21 +54,36 @@ impl Transform {
         self.scale
     }
 
+    pub fn get_local_to_world_matrix(&mut self) -> Matrix4x4 {
+        self.matrix_check();
+        
+        self.local_to_world
+    }
+
+    pub fn get_world_to_local_matrix(&mut self) -> Matrix4x4 {
+        self.matrix_check();
+        
+        self.world_to_local
+    }
+
     // World-space to local-space
     pub fn transform_point(&mut self, point: Vector3) -> Vector3 {
-        if self.has_changed {
-            self.compute_matrices();
-        }
+        self.matrix_check();
         
         self.local_to_world * point
     }
 
     pub fn inv_transform_point(&mut self, point: Vector3) -> Vector3 {
-        if self.has_changed {
-            self.compute_matrices();
-        }
+        self.matrix_check();
         
         self.world_to_local * point
+    }
+
+    fn matrix_check(&mut self) {
+        if self.has_changed {
+            self.compute_matrices();
+            self.has_changed = false;
+        }
     }
 
     // Apply order:
@@ -83,12 +99,10 @@ impl Transform {
             Matrix4x4::scale(self.scale))));
         
         self.world_to_local =
-            Matrix4x4::scale(self.scale) *
-            (Matrix4x4::z_rotation(self.rotation.z.to_radians()) *
-            (Matrix4x4::x_rotation(self.rotation.x.to_radians()) *
-            (Matrix4x4::y_rotation(self.rotation.y.to_radians()) *
-            Matrix4x4::translation(self.position))));
-
-        self.has_changed = false;
+            Matrix4x4::scale(1.0 / self.scale) *
+            (Matrix4x4::z_rotation(-self.rotation.z.to_radians()) *
+            (Matrix4x4::x_rotation(-self.rotation.x.to_radians()) *
+            (Matrix4x4::y_rotation(-self.rotation.y.to_radians()) *
+            Matrix4x4::translation(-self.position))));
     }
 }

@@ -1,9 +1,7 @@
-/*pub mod vector_math;
+pub mod vector_math;
 use vector_math::*;
-pub mod transform;
-use transform::Transform;
-pub mod camera;
-use camera::Camera;*/
+pub mod components;
+use components::*;
 
 use winit::{
     event::{Event, WindowEvent},
