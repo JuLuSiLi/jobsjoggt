@@ -1,17 +1,24 @@
-/*pub mod vector_math;
+pub mod vector_math;
 use vector_math::*;
 pub mod components;
 use components::*;
 pub mod game_object;
-use game_object::*;*/
+use game_object::*;
 
-use winit::{
+/*use winit::{
     event::{Event, WindowEvent},
     event_loop::{ControlFlow, EventLoop},
     window::WindowBuilder,
-};
+};*/
 
 fn main() {
+    let mut g = GameObject::new("Test Object");
+    g.add_component(Transform::new());
+
+    g.update();
+}
+
+/*fn main() {
     let event_loop = EventLoop::new();
     let window = WindowBuilder::new().build(&event_loop).unwrap();    
 
@@ -54,4 +61,4 @@ fn main() {
             _ => ()
          }
      });
- }
+ }*/

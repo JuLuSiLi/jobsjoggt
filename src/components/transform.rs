@@ -14,7 +14,7 @@ pub struct Transform {
 }
 
 impl Component for Transform {
-
+    
 }
 
 impl Transform {
