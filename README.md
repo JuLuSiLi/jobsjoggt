@@ -8,7 +8,7 @@ For now, we are working on implementing baseline functionality, such as windowin
 Don't expect too good code, as this project is meant as a playground for us, however we do try our best!
 
 ## License, Maintainers
-This repository is licensed under the GNU General Public License v3.0 (`GNU GPLv3`).
+This repository is licensed under the GNU General Public License v3.0 ([`GNU GPLv3`](LICENSE)).
 
 It is maintained by [@Goldscar1](https://github.com/Goldscar1), [@l-zeuch](https://github.com/l-zeuch), [@simjus](https://github.com/simjus), and [@nathanael122](https://github.com/nathanael122).
 
